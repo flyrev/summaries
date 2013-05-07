@@ -1,0 +1,53 @@
+\documentclass{book}
+
+\newcommand{\maxint}[1]{\ensuremath{\mathrm{Max-Int}(#1)}}
+
+\begin{document}
+\chapter{}
+Not part of curriculum.
+
+\chapter{}
+Not part of curriculum.
+
+\chapter{Deterministic Approaches}
+\section{}
+Not part of curriculum.
+\section{Pseudo-Polynomial-Time Algorithms}
+\subsection{Basic concept}
+Max-Int(x): The largest integer in the input.
+
+Pseudo-polynomial-time algorithm $A$:
+$\mathrm{Time}_A(x) = O(p(|x|, \maxint{x})$ for a polynomial $p$. (An algorithm bounded by $O(p(|x|))$ would be simply a polynomial-time algorithm, so Max-Int is the crucial thing here.)
+
+If an input instance $x$ has $x \leq \maxint{h(|x|)}$ for a polynomial $h$, the time is bounded by a polynomial. We call this the $h$-value-bounded subproblem of U, Value(h)-U.
+
+\section{Dynamic Programming and Knapsack problem}
+We run DP on the number of elements allowed. For each step, we calculate the achievable profits and the items used to achieve that particular profit. $\mathrm{TRIPLE}_n$ denotes that we are allowed to use the $n$ first elements. The notation for a TRIPLE is (profit, weight, \{items\}).
+
+\section{}
+Not part of curriculum(?).
+
+\section{Limits of Applicability}
+Here we look at whether or not an integer-valued problem has a pseudo-polyomial algorithm. We derive techniques for showing the nonexistence of pseudo-polynomial algorithms if P $\neq$ NP.
+
+If we restrict the input instances to instances where the maximum integer is bounded by a polynomial of the input size and it still ends up being NP-hard, we have strongly NP-hardness. More formally: We call an integer-valued problem $U$ strongly NP-hard of there exists a polynomial $p$ such that Value(p)-U is NP-hard. If this problem then still had a polynomial algorithm, P would be equal to NP.
+
+TSP is strongly NP-hard.
+
+Proof: We already know that HC is NP-hard. Now, we show that an algorithm for $\mathrm{Lang}_{\mathrm{Value}(p)\mathrm{-TSP}}$ could be used to solve HC, and hence must also be NP-hard in itself. Formally we write this as HC $\leq_p \mathrm{Lang}_{\mathrm{Value}(p)\mathrm{-TSP}}$.
+
+We choose the polynomial $p(n) = n$. 
+
+Let $G=(V,E), |V|=n$ be an input to HC.
+
+First, we construct a complete weighted graph $(K_n,c)$ where $c(e) = 1$ if $e \in E$ and $c(e) = 2$ if $e \notin E$, in other words: Let the cost be 1 for the edges that are in $E$ and 2 for edges that aren't in $E$.
+
+Now, if the original graph $G$ has a Hamiltonian tour, the TSP algorithm for the new graph we constructed would return $n$, since the optimal tour would then only consist of 1-edges. So restricting the TSP-input for edges that have values less than the number of elements does not make it any less NP-hard, since it could be used to solve HC.
+
+The input instances we created will satisfy the triangle inequality, so we showed that triangle-TSP is strongly NO-hard, too.
+
+Weighted vertex cover is strongly NP-hard because the unweighted version is NP-hard. Every weighted version of an optimization graph problem is strongly NP-hard if the original ``unweighted'' version is NP-hard. We simply then ``re-restrict'' the input to 1 or whatever, which will make the input bounded by a polynomial of the input size, and there we are.
+
+
+
+\end{document}
